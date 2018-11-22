@@ -1,6 +1,8 @@
 import math
 import cmath
-import turtle
+import numpy as np  
+import matplotlib.pyplot as plt  
+
 
 def options():
     print('''
@@ -370,6 +372,7 @@ def sf_adg():
 
 
 def sf_ti():
+    global interval_time_flt
     eq_select_ti()
     missing_param = input()
     while (missing_param != 'fv' and
@@ -445,6 +448,11 @@ def sf_ti():
         sol_time_1 = ((-1 * velocity_initial_vertical) - math.sqrt(discrim_time)) / (2 * (adg_flt/2))
         sol_time_2 = ((-1 * velocity_initial_vertical) + math.sqrt(discrim_time)) / (2 * (adg_flt/2))
         print('the solutions to the quadratic are:', sol_time_1, 'seconds', 'and', sol_time_2, 'seconds')
+        x = np.linspace(-100, 100, 25) # create 1000 equally spaced points between -10 and 10
+        y = (-0.5 * adg_flt * x**2) + (velocity_initial_vertical * x) - distance_vertical  # calculate the y value for each element of the x vector
+        fig, ax = plt.subplots()
+        ax.plot(x, y)
+        plt.show()
 
 
 def sf_fv():
